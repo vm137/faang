@@ -16,6 +16,23 @@ public class SingleLinkedList {
     }
   }
 
+  public void reverse() {
+    if (head == tail) { return; }
+
+    Node node = head;
+    Node nodeNext = node.next;
+    head.next = null;
+    Node nodeNextNext  = nodeNext.next;
+
+    nodeNext.next = node;
+    node = nodeNext;
+    nodeNext = nodeNextNext;
+
+    nodeNext.next = node;
+
+    head = nodeNext;
+  }
+
 
   public static void main(String[] args) {
     // create
@@ -26,16 +43,29 @@ public class SingleLinkedList {
     list.add(3);
 
     // print
-    // reverse
+    list.print();
+
+    list.reverse();
+    list.print();
+
     // print
   }
-}
 
-class Node {
-  int value;
-  Node next;
+  public void print() {
+    Node node = head;
+    while (node != null) {
+      System.out.printf("%d ", node.value);
+      node = node.next;
+    }
+    System.out.println("\n");
+  }
 
-  Node(int value) {
-    this.value = value;
+  private static class Node {
+    int value;
+    Node next;
+
+    Node(int value) {
+      this.value = value;
+    }
   }
 }
