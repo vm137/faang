@@ -20,9 +20,11 @@ public class SingleLinkedList {
     if (head == tail) { return; }
 
     Node node = head;
-    Node nodeNext = node.next;
-    head.next = null;
-    Node nodeNextNext  = nodeNext.next;
+    Node nodeNext;
+    Node nodeNextNext;
+
+    nodeNext = node.next;
+    nodeNextNext  = nodeNext.next;
 
     nodeNext.next = node;
     node = nodeNext;
@@ -30,6 +32,8 @@ public class SingleLinkedList {
 
     nodeNext.next = node;
 
+    head.next = null;
+    tail = head;
     head = nodeNext;
   }
 
