@@ -17,24 +17,14 @@ public class SingleLinkedList {
   }
 
   public void reverse() {
-    if (head == tail) { return; }
-
-    Node node = head;
-    Node nodeNext;
-    Node nodeNextNext;
-
-    nodeNext = node.next;
-    nodeNextNext  = nodeNext.next;
-
-    nodeNext.next = node;
-    node = nodeNext;
-    nodeNext = nodeNextNext;
-
-    nodeNext.next = node;
-
-    head.next = null;
-    tail = head;
-    head = nodeNext;
+    Node curr = head, temp, newHead = null;
+    while (curr != null) {
+      temp = curr.next;
+      curr.next = newHead;
+      newHead = curr;
+      curr = temp;
+    }
+    this.head = newHead;
   }
 
 
@@ -45,6 +35,7 @@ public class SingleLinkedList {
     list.add(1);
     list.add(2);
     list.add(3);
+    list.add(4);
 
     // print
     list.print();
